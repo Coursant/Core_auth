@@ -26,8 +26,8 @@ func (c *AtomicQueryMTPV2) VerifyQuery(
 	verifiablePresentation json.RawMessage,
 ) error {
 	return query.Check(ctx, schemaLoader, &CircuitOutputs{
-		IssuerID:            c.IssuerID,
-		ClaimSchema:         c.ClaimSchema,
+		IssuerID:            (*core.ID)(c.IssuerID),
+		ClaimSchema:         core.SchemaHash(c.ClaimSchema),
 		SlotIndex:           c.SlotIndex,
 		Operator:            c.Operator,
 		Value:               c.Value,
